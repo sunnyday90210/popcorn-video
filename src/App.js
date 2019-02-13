@@ -1,39 +1,43 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import Movie from './Movie';
+
+const movies = [
+  {
+    id: 1,
+    title: 'Star Wars'
+  },
+  {
+    id: 2,
+    title: 'Spider Man'
+  },
+  {
+    id: 3,
+    title: '36th Chamber of Shaolon'
+  },
+  {
+    id: 4,
+    title: 'The terminator'
+  },
+  {
+    id: 5,
+    title: 'Bad Boys'
+  }
+];
 
 class App extends Component {
-  state = {
-    toggle: true
-  };
-
-  toggle = () => {
-    this.setState({
-      toggle: !this.state.toggle
-    });
-  };
-
   render() {
     return (
       <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          <Welcome text="Welcome to Using Props" toggle={this.state.toggle} />
-
-          {this.state.toggle && <p>This should show and hide</p>}
-
-          <button onClick={this.toggle}>Show / Hide</button>
         </header>
+        {movies.map(movie => {
+          return <Movie key={movie.id} movie={movie} />;
+        })}
       </div>
     );
-  }
-}
-
-class Welcome extends Component {
-  render() {
-    const { text, toggle } = this.props;
-    console.log(toggle);
-    return <h1 className="App-Title">{text}</h1>;
   }
 }
 
